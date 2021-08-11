@@ -545,7 +545,7 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys/system/bt/conf \
     hardware/qcom/display \
     hardware/qcom/media \
-    hardware/qcom/audio
+    vendor/qcom/opensource/audio-hal/primary-hal
 
 # Shims
 PRODUCT_PACKAGES += \
