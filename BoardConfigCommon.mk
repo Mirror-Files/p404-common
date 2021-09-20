@@ -22,6 +22,8 @@
 # definition file).
 #
 
+SELINUX_IGNORE_NEVERALLOWS := true
+
 # Common Tree Path
 COMMON_PATH := device/xiaomi/sdm660-common
 
@@ -113,6 +115,9 @@ HEALTHD_USE_BATTERY_INFO := true
 
 # Clang
 TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_VERSION := proton
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(TARGET_KERNEL_CLANG_PATH)/bin/aarch64-linux-gnu-
+TARGET_KERNEL_CROSS_COMPILE_ARM32_PREFIX := $(TARGET_KERNEL_CLANG_PATH)/bin/arm-linux-gnueabi-
 
 # CNE and DPM
 BOARD_USES_QCNE := true
@@ -141,6 +146,10 @@ LOC_HIDL_VERSION := 4.0
 DEVICE_FRAMEWORK_MANIFEST_FILE := $(COMMON_PATH)/framework_manifest.xml
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml \
+    $(COMMON_PATH)/framework_compatibility_matrix_manifest.xml
+
 
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
@@ -161,7 +170,6 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_VERSION := 4.4
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm660
-TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 # Enable stats logging in LMKD
 TARGET_LMKD_STATS_LOG := true
@@ -224,7 +232,6 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 PROTOBUF_SUPPORTED := true
 
 # SELinux
-include device/qcom/sepolicy-legacy-um/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private

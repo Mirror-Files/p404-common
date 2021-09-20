@@ -25,6 +25,8 @@
 PRODUCT_USES_QCOM_HARDWARE := true
 PRODUCT_BOARD_PLATFORM := sdm660
 TARGET_BOARD_PLATFORM := sdm660
+PA_VERSION_CODE := 2
+PA_BUILD_VARIANT := Beta
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -506,10 +508,6 @@ PRODUCT_PACKAGES += \
     qti-telephony-utils \
     qti_telephony_utils.xml \
     rild \
-    telephony-ext
-
-# RIL JAR
-PRODUCT_BOOT_JARS += \
     telephony-ext
 
 # Seccomp policy
